@@ -4,8 +4,6 @@ import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigInteger;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EvenFibonacciTest {
@@ -41,6 +39,7 @@ public class EvenFibonacciTest {
     public void findSumOfEvenValues_givenFibonacciLessThan4Million_returnsTheAnswer(){
         Integer answer = evenFibonacci.findSumOfEvenValues(
                 evenFibonacci.generateFibonacci(4000000));
+        assertThat(answer).isEqualTo(4613732);
         System.out.println(answer);
     }
 

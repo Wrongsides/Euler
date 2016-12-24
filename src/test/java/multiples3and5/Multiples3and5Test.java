@@ -36,7 +36,6 @@ public class Multiples3and5Test {
 
     @Test
     public void sumValuesFromLists_givenTwoLists_returnsTheSumOfAllValues(){
-
         List<Integer> multiplesOfThree = Lists.newArrayList(3, 6, 9);
         List<Integer> multiplesOfFive = Lists.newArrayList(5);
         assertThat(multiples3and5.sumValuesFromLists(multiplesOfThree,multiplesOfFive)).isEqualTo(23);
@@ -44,9 +43,10 @@ public class Multiples3and5Test {
 
     @Test
     public void sumValuesFromLists_givenMultiplesOf3or5Below1000_retrunsTheAnswer(){
-
-        Integer answer = multiples3and5.sumValuesFromLists(multiples3and5.findMultiplesOf(3, 1000), multiples3and5.findMultiplesOf(5, 1000));
-
+        List<Integer> multiplesOfThree = multiples3and5.findMultiplesOf(3, 1000);
+        List<Integer> multiplesOfFive = multiples3and5.findMultiplesOf(5, 1000);
+        Integer answer = multiples3and5.sumValuesFromLists(multiplesOfThree, multiplesOfFive);
+        assertThat(answer).isEqualTo(233168);
         System.out.println(answer);
     }
 }
