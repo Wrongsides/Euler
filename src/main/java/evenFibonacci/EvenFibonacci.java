@@ -1,5 +1,7 @@
 package evenFibonacci;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 public class EvenFibonacci {
@@ -12,7 +14,16 @@ public class EvenFibonacci {
     }
 
     public List<Integer> generateFibonacci(Integer limit) {
+        int currentValue = 2;
+        int previousValue = 1;
+        List<Integer> sequence = Lists.newArrayList(previousValue, currentValue);
 
-        return null;
+        while((currentValue + previousValue) < limit){
+            Integer fibNumber = currentValue + previousValue;
+            sequence.add(fibNumber);
+            previousValue = currentValue;
+            currentValue = fibNumber;
+        }
+        return sequence;
     }
 }
