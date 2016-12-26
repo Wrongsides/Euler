@@ -1,7 +1,8 @@
-package multiples3and5;
+package problems;
 
 import com.google.common.collect.Lists;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Multiples3and5 {
@@ -17,12 +18,10 @@ public class Multiples3and5 {
     }
 
     public Integer sumValuesFromLists(List<Integer>... multiples) {
-
-        Integer answer = 0;
+        HashSet<Integer> dedupe = new HashSet<>();
         for (List<Integer> multiple : multiples) {
-            answer += multiple.stream().mapToInt(Integer::intValue).sum();
-
+            dedupe.addAll(multiple);
         }
-        return answer;
+        return dedupe.stream().mapToInt(Integer::intValue).sum();
     }
 }

@@ -1,4 +1,4 @@
-package multiples3and5;
+package problems;
 
 import com.google.common.collect.Lists;
 import org.junit.Before;

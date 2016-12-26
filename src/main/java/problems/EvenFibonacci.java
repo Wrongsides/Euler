@@ -1,4 +1,4 @@
-package evenFibonacci;
+package problems;
 
 import com.google.common.collect.Lists;
 
