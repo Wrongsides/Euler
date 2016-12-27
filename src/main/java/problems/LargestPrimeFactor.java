@@ -10,11 +10,11 @@ import java.util.stream.LongStream;
 public class LargestPrimeFactor {
 
     private final long number;
-    private List<Long> primes;
+    private List<Long> primeFactors;
 
     public LargestPrimeFactor(long number){
         this.number = number;
-        this.primes = Lists.newArrayList();
+        this.primeFactors = Lists.newArrayList();
     }
 
     public OptionalLong getLargestPrimeFactor() {
@@ -26,12 +26,12 @@ public class LargestPrimeFactor {
                 .findFirst();
     }
 
-    public boolean maxPrimeFactor(long primeFactor){
-        primes.add(0, primeFactor);
+    public boolean maxPrimeFactor(long newPrimeFactor){
+        primeFactors.add(0, newPrimeFactor);
         long checkValue = number;
 
-        for (Long prime : primes) {
-            checkValue = checkValue / prime;
+        for (Long primeFactor : primeFactors) {
+            checkValue /= primeFactor;
         }
 
         return checkValue == 1L;
