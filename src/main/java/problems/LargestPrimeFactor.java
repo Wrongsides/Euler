@@ -1,25 +1,39 @@
 package problems;
 
+import com.google.common.collect.Lists;
+
 import java.math.BigInteger;
-import java.util.Optional;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.OptionalLong;
+import java.util.stream.LongStream;
 
 public class LargestPrimeFactor {
 
-    public BigInteger findLargestPrimeFactorOf(BigInteger number) {
-        Stream<BigInteger> bigIntStream = Stream.iterate(BigInteger.ONE, n -> n.add(BigInteger.ONE)).limit(number.longValue() - 1L);
-        BigInteger lastPrime = bigIntStream.filter(i -> number.mod(i).equals(BigInteger.ZERO))
-                                .filter(this::isPrime)
-                                .reduce((a,b) -> b)
-                                .orElse(null);
-        return lastPrime;
+    private final long number;
+    private List<Long> primes;
+
+    public LargestPrimeFactor(long number){
+        this.number = number;
+        this.primes = Lists.newArrayList();
     }
 
-    public boolean isPrime(BigInteger number){
-        Optional<BigInteger> notPrime = Stream.iterate(BigInteger.ONE.add(BigInteger.ONE), n -> n.add(BigInteger.ONE)).limit(number.subtract(BigInteger.ONE).longValue())
-                                        .filter(i -> number.mod(i).equals(BigInteger.ZERO))
-                                        .findFirst();
-        return !notPrime.isPresent() || notPrime.get().equals(number);
+    public OptionalLong getLargestPrimeFactor() {
+
+        return LongStream.iterate(3, n -> n + 2)
+                .filter(i -> BigInteger.valueOf(i).isProbablePrime(1))
+                .filter(i -> number % i == 0L)
+                .filter(this::maxPrimeFactor)
+                .findFirst();
+    }
+
+    public boolean maxPrimeFactor(long primeFactor){
+        primes.add(0, primeFactor);
+        long checkValue = number;
+
+        for (Long prime : primes) {
+            checkValue = checkValue / prime;
+        }
+
+        return checkValue == 1L;
     }
 }

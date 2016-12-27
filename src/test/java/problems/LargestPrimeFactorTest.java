@@ -1,10 +1,7 @@
 package problems;
 
 
-import org.junit.Before;
 import org.junit.Test;
-
-import java.math.BigInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,30 +15,18 @@ public class LargestPrimeFactorTest {
 
     private LargestPrimeFactor largestPrimeFactor;
 
-    @Before
-    public void setUp(){
-        largestPrimeFactor = new LargestPrimeFactor();
-    }
-
-    @Test
-    public void isPrime_for29_returnsTrue(){
-        assertThat(largestPrimeFactor.isPrime(new BigInteger("29"))).isTrue();
-    }
-    @Test
-    public void isPrime_for28_returnsFalse(){
-        assertThat(largestPrimeFactor.isPrime(new BigInteger("28"))).isFalse();
-    }
-
     @Test
     public void findLargestPrimeFactorOf_13195_returns29(){
-        assertThat(largestPrimeFactor.findLargestPrimeFactorOf(new BigInteger("13195"))).isEqualTo(new BigInteger("29"));
+        largestPrimeFactor = new LargestPrimeFactor(13195L);
+        assertThat(largestPrimeFactor.getLargestPrimeFactor().getAsLong()).isEqualTo(29L);
     }
 
     @Test
     public void findLargestPrimeFactorOf_600851475143_returnsTheAnswer(){
-        BigInteger answer = largestPrimeFactor.findLargestPrimeFactorOf(new BigInteger("600851475143"));
+        largestPrimeFactor = new LargestPrimeFactor(600851475143L);
+        long answer = largestPrimeFactor.getLargestPrimeFactor().getAsLong();
         System.out.println(answer);
-        assertThat(answer).isEqualTo(null);
+        assertThat(answer).isEqualTo(6857L);
     }
 
 }
