@@ -26,7 +26,7 @@ public class LargestPrimeFactor {
                 .findFirst();
     }
 
-    public boolean maxPrimeFactor(long newPrimeFactor){
+    private boolean maxPrimeFactor(long newPrimeFactor){
         primeFactors.add(0, newPrimeFactor);
         long checkValue = number;
 
